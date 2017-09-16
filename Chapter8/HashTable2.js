@@ -26,10 +26,19 @@ function betterHash(key) {
   return parseInt(total);
 }
 //put方法把索引和键对应的值相对应
-function put(key) {
+/*function put(key) {
 	//var pos = simpleHash(key)
 	var pos = betterHash(key);
 	this.hashTable[pos] = key;
+}*/
+/*优化put方法 同时接受键和数据*/
+function put(key, data) {
+	var pos = betterHash(key);
+	this.HashTable[pos] = data;
+}
+//get方法用于获取数组中的数据
+function get(key) {
+	return this.table[this.betterHash(key)];
 }
 //展示所有数组中的索引和值
 function show(arr) {
