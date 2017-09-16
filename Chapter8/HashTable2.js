@@ -1,73 +1,47 @@
-/*散列 哈希类*/
+//哈希类
 function HashTable() {
-	this.table = new Array(137); //长度为137的数组
-	//this.simpleHash = simpleHash; //将值转换为对应键值的方法
+	this.hashTable = new Array(137); //数组存在数据
+	this.simpleHash = simpleHash; //散列函数
 	this.betterHash = betterHash;
-	this.showDistro = showDistro;
 	this.put = put;
-	this.get = get;
-	this.bulidChains = bulidChains;
+	this.show = show;
 }
-//散列函数
-//入参是一个数组
-//??字符串也能取到length 能的！！
-/*function simpleHash(data) {
-	var total = 0;
-	for(var i = 0; i < data.length; i++){
-		total += data.charCodeAt(i); //字符串中的每个值转化为unicode编码并且拼接
+//散列函数的实现 
+function simpleHash(key) {
+	var total = "";
+	for(var i = 0; i < key.length; i++) {
+		total += key[i].charCodeAt();
 	}
-	return total % this.table.length; //用计算得到的每个字符中字母转化为Unicode编码的值取余得到键值
-}*/
-/*
- * string = 'abc'
- * total = 37 * total + 'abc'(ascii)
- * total % 137
-*/
-function betterHash(string) {
+	//console.log(total)
+	return total % 137;
+}
+//优化散列函数 优化算法 减少冲突
+function betterHash(key) {
 	const H = 37;
 	var total = 0;
-	for(var i = 0; i < string.length; i++){
-		total += H * total + string.charCodeAt(i);
-	}
-	total = total % this.table.length;
-	if(total < 0) {
-		total += this.table.length - 1;
-	}
-	return parseInt(total);
+  for(var i = 0; i < key.length; i++){
+  	total += total*37 + key[i].charCodeAt();
+  }
+  total = total % 137;
+  return parseInt(total);
 }
-//散列化整型数
-//键与值的统一
-//修改该方法同时接受键和只作为参数
-function put(data) {
-	var pos = this.betterHash(data);
-	this.table[pos] = data;
+//put方法把索引和键对应的值相对应
+function put(key) {
+	//var pos = simpleHash(key)
+	var pos = betterHash(key);
+	this.hashTable[pos] = key;
 }
-//get方法用于获取某一键对应的值
-function get(key) {
-	return this.table[this.betterHash(key)];
-}
-/*function put(data) {
-	var pos = this.simpleHash(data);
-	this.table[pos] = data;
-}*/
-function showDistro() {
-	var n = 0;
-	for(var i = 0; i < this.table.length; i++){
-		if(this.table[i][0] != undefined) //键所对应的有值存在
-			console.log(i + "  " + this.table[i]);
+//展示所有数组中的索引和值
+function show(arr) {
+	for(var i = 0; i < 137; i++){
+		if(arr[i] != undefined){
+			console.log("索引" + i +"\n" + "值" + arr[i]);
+		}
 	}
 }
-//碰撞处理 开链法
-function bulidChains() {
-	for(var i = 0; i < this.table.length; i++){
-		this.table[i] = new Array();
-	}
+var a = ['amy','eason','apple','blue','world'];
+var tTable = new HashTable();
+for(var i = 0; i < a.length; i++){
+	tTable.put(a[i]);
 }
-var hTable = new HashTable();
-hTable.bulidChains();
-var someNames = ["Alexander","Benjamin","Burke","Cliff","Devin","Amy","Alice","Mary"];
-for(var i = 0; i < someNames.length; i++){
-	hTable.put(someNames[i]);
-}
-hTable.showDistro();
-
+tTable.show(tTable.hashTable);
