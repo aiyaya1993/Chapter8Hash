@@ -5,6 +5,7 @@ function HashTable() {
 	this.betterHash = betterHash;
 	this.put = put;
 	this.show = show;
+	this.get = get;
 }
 //散列函数的实现 
 function simpleHash(key) {
@@ -34,6 +35,8 @@ function betterHash(key) {
 /*优化put方法 同时接受键和数据*/
 function put(key, data) {
 	var pos = betterHash(key);
+	console.log(pos)
+	console.log(data)
 	this.HashTable[pos] = data;
 }
 //get方法用于获取数组中的数据
@@ -48,9 +51,21 @@ function show(arr) {
 		}
 	}
 }
-var a = ['amy','eason','apple','blue','world'];
-var tTable = new HashTable();
-for(var i = 0; i < a.length; i++){
+/*var a = new Array();
+ a = [amy: 0,eason: 1,apple: 2,blue: 3,world: 4];
+var tTable = new HashTable();*/
+/*for(key in a){
+	console.log(key);
+}*/
+/*for(var i = 0; i < a.length; i++){
 	tTable.put(a[i]);
+}*/
+//tTable.show(tTable.hashTable);
+var tTable = new HashTable();
+var b = new Array();
+b["i"] = 90;
+b["u"] = 80;
+var tTable = new HashTable();
+for(key in b) {
+	tTable.put(key, b[key]);
 }
-tTable.show(tTable.hashTable);
