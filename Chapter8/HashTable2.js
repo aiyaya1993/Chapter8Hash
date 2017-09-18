@@ -66,6 +66,7 @@ var b = new Array();
 b["i"] = 90;
 b["u"] = 80;
 var tTable = new HashTable();
-for(key in b) {
-	tTable.put(key, b[key]);
-}
+//for(key in b) {
+	//console.log(key + " " + b[key]);
+	tTable.put("i", b["i"]);
+//}
