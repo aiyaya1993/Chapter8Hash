@@ -85,7 +85,7 @@ function interset(seta, setb) {
 }
 //补集
 function difference(seta, setb) {
-	var temAet = new Set();
+	var temSet = new Set();
 		for(i in seta.dataStore){
 		if(setb.contains(seta.dataStore[i]) == false) {
 			temSet.dataStore.push(seta.dataStore[i]);
@@ -93,10 +93,10 @@ function difference(seta, setb) {
 			//return true;
 		}else{
 			
-			return true;
+			//return true;
 		}
 	}
-	console.log(temSet.dataStore);
+	console.log("补集是："+temSet.dataStore);
 }
 //求子集
 //求B是不是A的子集
@@ -104,22 +104,15 @@ function subset(seta, setb) {
 	if(seta.length < setb.length){
 		console.log("不能构成子集关系")
 	}else{
-		/*for(i in setb.dataStore){
-			if(seta.contains(setb.dataStore[i])){
-				console.log("不是子集关系")
-			}else{
+		for(i in setb.dataStore){
+			if(!seta.contains(setb.dataStore[i])){
+				console.log("B不是A的子集")
+				return false;
+			}/*else{
 				console.log("B是A的子集");
-			}
-		}*/
-		console.log(setb.dataStore)
-		/*for each(i in setb.dataStore){
-
-			if(!seta.contains(i)){
-				console.log("不是子集关系");
-			}else{
-				console.log("B是A的子集");
-			}
-		}*/
+			}*/
+		}
+		console.log("B是A的子集")
 	}
 }
 var names = new Set();
