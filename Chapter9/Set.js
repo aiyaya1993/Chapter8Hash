@@ -9,6 +9,7 @@ function Set() {
 	this.interset = interset;
 	this.subset = subset;
 	this.length = length;
+	this.difference = difference;
 }
 //添加方法
 function add(ele) {
@@ -82,19 +83,43 @@ function interset(seta, setb) {
 		}
 	}
 }
+//补集
+function difference(seta, setb) {
+	var temAet = new Set();
+		for(i in seta.dataStore){
+		if(setb.contains(seta.dataStore[i]) == false) {
+			temSet.dataStore.push(seta.dataStore[i]);
+			
+			//return true;
+		}else{
+			
+			return true;
+		}
+	}
+	console.log(temSet.dataStore);
+}
 //求子集
 //求B是不是A的子集
 function subset(seta, setb) {
 	if(seta.length < setb.length){
 		console.log("不能构成子集关系")
 	}else{
-		for(i in setb.dataStore){
-			if(seta.contains(setb.dataStore[i]) != true){
+		/*for(i in setb.dataStore){
+			if(seta.contains(setb.dataStore[i])){
 				console.log("不是子集关系")
 			}else{
 				console.log("B是A的子集");
 			}
-		}
+		}*/
+		console.log(setb.dataStore)
+		/*for each(i in setb.dataStore){
+
+			if(!seta.contains(i)){
+				console.log("不是子集关系");
+			}else{
+				console.log("B是A的子集");
+			}
+		}*/
 	}
 }
 var names = new Set();
@@ -108,4 +133,5 @@ names2.add("Amy");
 names2.subset(names,names2);
 names.union(names2,names);
 names2.interset(names2,names);
+names2.difference(names,names2);
 names.show();
