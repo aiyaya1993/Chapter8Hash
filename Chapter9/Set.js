@@ -10,6 +10,7 @@ function Set() {
 	this.subset = subset;
 	this.length = length;
 	this.difference = difference;
+	this.sortSet = sortSet;
 }
 //添加方法
 function add(ele) {
@@ -21,6 +22,10 @@ function add(ele) {
 	}else {
 		return false;
 	}
+}
+//添加排序方法
+function sortSet(arr) {
+	var arr = this.dataStore.sort();
 }
 //删除操作
 function remove(ele) {
@@ -127,4 +132,5 @@ names2.subset(names,names2);
 names.union(names2,names);
 names2.interset(names2,names);
 names2.difference(names,names2);
+names.sortSet();
 names.show();
