@@ -59,12 +59,22 @@ function insert(data) {
 }
 //中序遍历
 function inOrder(node) {
-	//根左
+	//左根右
 	if( !(node == null )){
 		inOrder(node.left);
 		console.log( node.show() + " ");
 		inOrder(node.right);
 	}
+}
+
+//先序遍历
+function preOrder(node) {
+	//根左右
+  if( !(node == null)) {
+  	console.log( node.show() + " ");
+  	inOrder(node.left);
+  	inOrder(node.right);
+  }
 }
 
 var nums = new BST();
@@ -75,5 +85,7 @@ nums.insert(37);
 nums.insert(3);
 nums.insert(99);
 nums.insert(22);
+console.log(nums)
 inOrder(nums.root);
+preOrder(nums.root);
 
