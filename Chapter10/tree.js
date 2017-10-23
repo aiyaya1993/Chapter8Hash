@@ -8,6 +8,7 @@ function Node(data, left, right) {
 	this.left = left;
 	this.right = right; //和其它节点的链接
 	this.show = show;
+	this.getMin = getMin;
 }
 
 function show() {
@@ -57,7 +58,7 @@ function insert(data) {
 
 	}
 }
-//中序遍历
+//中序遍历 递归
 function inOrder(node) {
 	//左根右
 	if( !(node == null )){
@@ -77,15 +78,46 @@ function preOrder(node) {
   }
 }
 
+//后序遍历
+function postOrder(node) {
+	//左右根
+	if( !(node == null)) {
+  	inOrder(node.left);
+  	inOrder(node.right);
+  	console.log( node.show() + " ");
+  }
+}
+
+//寻找二叉树中的最小值
+function getMin(node) {
+	var current = node;
+	if( !(current.left == null) ){
+		current = current.left;
+		//console.log(current.data);
+	}
+console.log("最小值 " + current.data);
+}
+//寻找二叉树中的最大值
+function getMax(node) {
+	var current = node;
+	if( !(current.right == null) ){
+		current = current.right;
+		console.log("最大值 " + current.data);
+	}
+	
+}
 var nums = new BST();
-nums.insert(23);
-nums.insert(45);
-nums.insert(16);
-nums.insert(37);
-nums.insert(3);
-nums.insert(99);
+nums.insert(56);
+nums.insert(10);
 nums.insert(22);
+nums.insert(30);
+nums.insert(81);
+nums.insert(92);
+nums.insert(77);
 console.log(nums)
 inOrder(nums.root);
 preOrder(nums.root);
+getMin(nums.root);
+getMax(nums.root);
+
 
