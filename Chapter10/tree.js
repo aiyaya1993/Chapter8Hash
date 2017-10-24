@@ -9,6 +9,7 @@ function Node(data, left, right) {
 	this.right = right; //和其它节点的链接
 	this.show = show;
 	this.getMin = getMin;
+	this.getMax = getMax;
 }
 
 function show() {
@@ -97,17 +98,24 @@ function getMin(node) {
 	}
 console.log("最小值 " + current.data);
 }
+/*function getMin() {
+	var current = this.root; //从根节点开始寻找
+	while( !(current.left == null) ) {
+		current = current.left;
+	}
+	console.log(current.data);
+}*/
 //寻找二叉树中的最大值
 function getMax(node) {
 	var current = node;
-	if( !(current.right == null) ){
+	while( current.right != null ){
 		current = current.right;
-		console.log("最大值 " + current.data);
+		
 	}
-	
+	console.log("最大值 " + current.data);
 }
 var nums = new BST();
-nums.insert(56);
+nums.insert(596);
 nums.insert(10);
 nums.insert(22);
 nums.insert(30);
