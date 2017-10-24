@@ -10,6 +10,7 @@ function Node(data, left, right) {
 	this.show = show;
 	this.getMin = getMin;
 	this.getMax = getMax;
+	
 }
 
 function show() {
@@ -20,6 +21,7 @@ function BST() {
 	this.root = null; //根节点默认我空
 	this.insert = insert; //插入操作
 	this.inOrder = inOrder;
+	this.find = find;
 }
 
 //定义插入方法 只针对一个节点来做左右的判断
@@ -106,6 +108,7 @@ console.log("最小值 " + current.data);
 	console.log(current.data);
 }*/
 //寻找二叉树中的最大值
+//遍历寻找一般用while循环不是if判断
 function getMax(node) {
 	var current = node;
 	while( current.right != null ){
@@ -114,18 +117,50 @@ function getMax(node) {
 	}
 	console.log("最大值 " + current.data);
 }
+//寻找给定值
+/*function find(data) {
+	var current = this.root;
+	while( !(current.data == data) ) {
+		//左右子树分开做判断
+		if( current.data > data) {
+			current = current.left;
+		} else {
+			current = current.right;
+		}
+		console.log(current)
+		//return current;
+	}
+	console.log("没有找到")
+}*/
+function find(data) {
+	var current = this.root;
+	while( current != null) {
+		if( current.data == data) {
+			//console.log("找到了 "+ current.data);
+			return current.data;
+		}else if( current.data > data ) {
+			current = current.left;
+		}else {
+			current = current.right;
+		}
+		//console.log(current.data);
+	}
+
+	return null;
+}
 var nums = new BST();
-nums.insert(596);
+nums.insert(58);
 nums.insert(10);
 nums.insert(22);
 nums.insert(30);
 nums.insert(81);
 nums.insert(92);
 nums.insert(77);
-console.log(nums)
+//console.log(nums)
 inOrder(nums.root);
 preOrder(nums.root);
 getMin(nums.root);
 getMax(nums.root);
+console.log(nums.find(5))
 
 
